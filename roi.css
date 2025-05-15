@@ -194,6 +194,10 @@ body {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
+.section-summary:last-child {
+  margin-bottom: 0;
+}
+
 @media (max-width: 768px) {
   .section-summary {
     margin-top: 1rem;

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=10" />
+    <title>ROI calculator</title>
+    <link rel="stylesheet" href="roi.css" />
+    <script src="./roi.js"></script>
+  </head>
+  <body>
+    <main class="roi-container">
+      <div class="header-container">
+        <h1 class="header-roi">Discover Your Potential ROI</h1>
+        <h3 class="subtitle-roi">
+          Measure your current process. Justify smarter solutions.
+        </h3>
+      </div>
+      <section class="roi-calculator-section">
+        <div class="roi-step">
+          <h2>STEP 1: Your Current Cost of Data Handling</h2>
+          <div class="input-container">
+            <label for="sku-input" class="description">
+              How many products/SKUs are you handling?
+            </label>
+            <input
+              type="text"
+              id="sku-input"
+              value="2,000"
+              inputmode="numeric"
+              pattern="\d*"
+              class="input"
+            />
+            <input
+              type="range"
+              class="roi-slider"
+              id="sku-slider"
+              min="1"
+              max="1000000"
+              value="2000"
+            />
+          </div>
+          <div class="input-container">
+            <label for="attributes-input" class="description">
+              How many attributes do you handle per product or SKU?
+            </label>
+            <input
+              type="text"
+              id="attributes-input"
+              value="10"
+              inputmode="numeric"
+              pattern="\d*"
+              class="input"
+            />
+            <input
+              type="range"
+              class="roi-slider"
+              id="attributes-slider"
+              min="1"
+              max="500"
+              value="10"
+            />
+          </div>
+          <div class="input-container">
+            <label for="time-input" class="description">
+              Average time spent on each attribute (in seconds)
+            </label>
+            <input
+              type="text"
+              id="time-input"
+              value="40"
+              inputmode="numeric"
+              pattern="\d*"
+              class="input"
+            />
+            <input
+              type="range"
+              class="roi-slider"
+              id="time-slider"
+              min="1"
+              max="3600"
+              value="40"
+            />
+          </div>
+          <div class="input-container">
+            <label for="languages-input" class="description">
+              Number of languages in which your product data will be available
+            </label>
+            <input
+              type="text"
+              id="languages-input"
+              value="2"
+              inputmode="numeric"
+              pattern="\d*"
+              class="input"
+            />
+            <input
+              type="range"
+              class="roi-slider"
+              id="languages-slider"
+              min="1"
+              max="25"
+              value="2"
+            />
+          </div>
+          <div class="input-container">
+            <label for="channel-input" class="description">
+              Number of sales channels
+            </label>
+            <input
+              type="text"
+              id="channel-input"
+              value="5"
+              inputmode="numeric"
+              pattern="\d*"
+              class="input"
+            />
+            <input
+              type="range"
+              class="roi-slider"
+              id="channel-slider"
+              min="1"
+              max="250"
+              value="5"
+            />
+          </div>
+          <div class="input-container">
+            <label for="rate-input" class="description">
+              Internal hourly rate (for employees handling data work)
+            </label>
+            <input
+              type="text"
+              id="rate-input"
+              value="40"
+              inputmode="numeric"
+              pattern="\d*"
+              class="input"
+            />
+            <input
+              type="range"
+              class="roi-slider"
+              id="rate-slider"
+              min="1"
+              max="150"
+              value="40"
+            />
+          </div>
+
+          <!-- Step 1 result -->
+          <div class="section-summary">
+            <h4 class="summary">
+              STEP 1 SUMMARY<br />
+              <span>Your Current Cost of Manual Data Handling</span>
+            </h4>
+
+            <div class="summary-box">
+              <div
+                class="text-large"
+                id="manual-fields"
+                style="font-size: 32px"
+              >
+                –
+              </div>
+              <span class="text-large" style="font-size: 32px"
+                >&nbsp;fields</span
+              >
+              <p>Number of attribute fields you need to update manually</p>
+              <button
+                class="details-toggle"
+                onclick="toggleDetails('details-fields')"
+              >
+                Show details
+              </button>
+              <div class="details" id="details-fields" hidden>
+                (#SKUs × #Attributes × #Languages × #Channels)
+              </div>
+            </div>
+
+            <div class="summary-box">
+              <div class="text-large" id="manual-hours" style="font-size: 32px">
+                –
+              </div>
+              <span class="text-large" style="font-size: 32px"> hours</span>
+              <p>Time spent on manual work</p>
+              <button
+                class="details-toggle"
+                onclick="toggleDetails('details-hours')"
+              >
+                Show details
+              </button>
+              <div class="details" id="details-hours" hidden>
+                (Fields × Time per Attribute in seconds ÷ 3600)
+              </div>
+            </div>
+
+            <div class="summary-box">
+              <div class="text-large" id="manual-cost" style="font-size: 32px">
+                € –
+              </div>
+              <p>Your cost of manual work</p>
+              <button
+                class="details-toggle"
+                onclick="toggleDetails('details-cost')"
+              >
+                Show details
+              </button>
+              <div class="details" id="details-cost" hidden>
+                (Hours × Internal Hourly Rate)
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step2-section">
+            <h2>STEP 2: How Efficient Is Your Product Information Management Today?</h2>
+            <p class="section-description">
+              Assess your current product data setup. The more manual your
+              process, the greater the opportunity for savings.
+            </p>
+
+            <div class="info-box">
+              <img
+                src="https://www.bluestonepim.com/hubfs/Bluestone_October_2021/Images/question-mark.svg"
+                alt="Info"
+                class="info-icon"
+              />
+              <p>
+                The way you manage product data today directly affects your
+                time-to-market and operational costs. Manual, fragmented
+                processes leave huge room for improvement—while even modern PIM
+                systems can benefit from smarter, more scalable solutions.
+                Evaluate your setup to uncover your optimization potential.
+              </p>
+            </div>
+
+            <div class="slider-wrapper">
+              <div class="input-wrapper">
+                <input
+                  type="number"
+                  id="data-quality-input"
+                  value="50"
+                  min="1"
+                  max="100"
+                  class="input"
+                />
+                <span class="percent">%</span>
+              </div>
+              <input
+                type="range"
+                id="data-quality-slider"
+                value="50"
+                min="1"
+                max="100"
+                class="roi-slider"
+              />
+            </div>
+
+            <div class="slider-scale-wrapper">
+              <div class="slider-scale">
+                <div class="line-segment"></div>
+                <div class="line-segment"></div>
+                <div class="line-segment"></div>
+                <div class="line-segment"></div>
+              </div>
+              <div class="slider-labels">
+                <span>0%</span>
+                <span>25%</span>
+                <span>50%</span>
+                <span>75%</span>
+                <span>100%</span>
+              </div>
+            </div>
+
+            <div class="bucket-labels">
+              <div>
+                <strong>Manual processes + scattered data</strong>
+              </div>
+              <div>
+                <strong>Basic tools, partial data centralization</strong>
+              </div>
+              <div>
+                <strong>Interim tool, generic centralization</strong>
+              </div>
+              <div>
+                <strong>PIM in use but outdated</strong>
+              </div>
+            </div>
+
+            <!-- Summary -->
+            <div class="section-summary">
+              <h4 class="summary">
+                STEP 2 SUMMARY<br />
+                <span>Your Estimated Efficiency Gains</span>
+              </h4>
+
+              <div class="summary-box">
+                <div
+                  class="text-large"
+                  id="step2-hours-saved"
+                  style="font-size: 32px"
+                >
+                  –
+                </div>
+                <span class="text-large" style="font-size: 32px"
+                  >&nbsp;hours</span
+                >
+                <p>Time saved by improving data management efficiency</p>
+                <button
+                  class="details-toggle"
+                  onclick="toggleDetails('details-step2-hours')"
+                >
+                  Show details
+                </button>
+                <div class="details" id="details-step2-hours" hidden>
+                  (Total Manual Hours × (100 – Slider Value) × 0.8 ÷ 100)
+                </div>
+              </div>
+
+              <div class="summary-box">
+                <div
+                  class="text-large"
+                  id="step2-cost-saved"
+                  style="font-size: 32px"
+                >
+                  € –
+                </div>
+                <p>Estimated cost savings through reduced manual work</p>
+                <button
+                  class="details-toggle"
+                  onclick="toggleDetails('details-step2-cost')"
+                >
+                  Show details
+                </button>
+                <div class="details" id="details-step2-cost" hidden>
+                  (Time Saved × Internal Hourly Rate)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step3-section">
+            <h2>STEP 3: Additional Revenue Potential</h2>
+            <p class="section-description">
+              Estimate how much faster product launches and higher daily sales
+              could impact your revenue when using entitys.io.
+            </p>
+
+            <div class="input-container sku-container">
+              <label for="skus-to-launch" class="description">
+                How many SKUs are you planning to launch?
+              </label>
+              <div class="input-wrapper">
+                <input
+                  type="number"
+                  id="skus-to-launch"
+                  min="1"
+                  max="1000000"
+                  value="500"
+                  class="input sku-input"
+                />
+                <span class="input-suffix">SKUs</span>
+              </div>
+              <input
+                type="range"
+                id="skus-to-launch-slider"
+                min="1"
+                max="1000000"
+                value="500"
+                step="1"
+                class="roi-slider"
+              />
+            </div>
+            <div class="input-container launch-time-container">
+              <label for="launch-time" class="description">
+                How long does it take to launch these products in your current
+                setup?
+              </label>
+              <div class="input-wrapper">
+                <input
+                  type="number"
+                  id="launch-time"
+                  min="1"
+                  max="365"
+                  value="56"
+                  class="input launch-time-input"
+                />
+                <span class="input-suffix">days</span>
+              </div>
+              <input
+                type="range"
+                id="launch-time-slider"
+                min="1"
+                max="365"
+                value="56"
+                step="1"
+                class="roi-slider"
+              />
+            </div>
+            <div class="input-container revenue-container">
+              <label for="average-revenue" class="description">
+                What is the average revenue per SKU?
+              </label>
+              <div class="input-wrapper">
+                <input
+                  type="number"
+                  id="average-revenue"
+                  min="1"
+                  max="10000"
+                  value="100"
+                  class="input revenue-input"
+                />
+                <span class="input-suffix">€</span>
+              </div>
+              <input
+                type="range"
+                id="average-revenue-slider"
+                min="1"
+                max="10000"
+                value="100"
+                step="1"
+                class="roi-slider"
+              />
+            </div>
+            <div class="input-container sales-container">
+              <label for="average-sales" class="description">
+                What is the average number of sales per SKU per day?
+              </label>
+              <div class="input-wrapper">
+                <input
+                  type="number"
+                  id="average-sales"
+                  min="1"
+                  max="10000"
+                  value="5"
+                  class="input sales-input"
+                />
+                <span class="input-suffix">sales/day</span>
+              </div>
+              <input
+                type="range"
+                id="average-sales-slider"
+                min="1"
+                max="10000"
+                value="5"
+                step="1"
+                class="roi-slider"
+              />
+            </div>
+
+            <!-- Summary -->
+            <div class="section-summary">
+              <h4 class="summary">
+                STEP 3 SUMMARY<br />
+                <span>Your Additional Revenue Potential</span>
+              </h4>
+
+              <div class="summary-box">
+                <div
+                  class="text-large"
+                  id="step3-revenue"
+                  style="font-size: 32px"
+                >
+                  € –
+                </div>
+                <p>Estimated additional revenue by launching products faster</p>
+                <button
+                  class="details-toggle"
+                  onclick="toggleDetails('details-step3-revenue')"
+                >
+                  Show details
+                </button>
+                <div class="details" id="details-step3-revenue" hidden>
+                  (#SKUs to Launch × Avg. Revenue/SKU × Avg. Sales/Day × <br />
+                  [Launch Time × (100 – Data Quality %) × 0.8 ÷ 100])
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

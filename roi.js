@@ -172,19 +172,22 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function calculateStep3Revenue() {
-    const skus = parseNumber(skuToLaunchSlider?.value);
-    const days = parseNumber(launchTimeSlider?.value);
-    const revenue = parseNumber(averageRevenueSlider?.value);
-    const sales = parseNumber(averageSalesSlider?.value);
-    const quality = parseNumber(dataQualitySlider?.value);
+  const skus = parseNumber(skuToLaunchSlider?.value);          // #8
+  const currentDays = parseNumber(launchTimeSlider?.value);    // #9
+  const revenuePerUnit = parseNumber(averageRevenueSlider?.value); // #10
+  const unitsPerDay = parseNumber(averageSalesSlider?.value);      // #11
+  const dataQuality = parseNumber(dataQualitySlider?.value);       // #7
 
-    const impact = (days * (100 - quality) * 0.8) / 100;
-    const totalRevenue = skus * revenue * sales * impact;
+  // Step: Calculate how many days faster SKUs can be launched
+  const daysSaved = (currentDays * (100 - dataQuality) * 0.8) / 100;
 
-    if (revenueBox) {
-      revenueBox.textContent = `€ ${Math.round(totalRevenue).toLocaleString()}`;
-    }
+  // Step: Calculate extra revenue potential from launching earlier
+  const extraRevenue = skus * revenuePerUnit * unitsPerDay * daysSaved;
+
+  if (revenueBox) {
+    revenueBox.textContent = `€ ${Math.round(extraRevenue).toLocaleString()}`;
   }
+}
 
   bindSliderInput(skuToLaunchInput, skuToLaunchSlider, calculateStep3Revenue);
   bindSliderInput(launchTimeInput, launchTimeSlider, calculateStep3Revenue);

@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
       sliderId: 'sku-slider',
       min: 1,
       max: 1000000,
-      format: (val) => val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-      parse: (val) => parseInt(val.replace(/,/g, '') || '0'),
+      format: String,
+      parse: parseNumber,
     },
     {
       inputId: 'attributes-input',
@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function calculateStep1Summary() {
     const skus = parseNumber(document.getElementById('sku-slider')?.value);
+    console.log('skus', skus);
     const attributes = parseNumber(document.getElementById('attributes-slider')?.value);
     const timePerAttr = parseNumber(document.getElementById('time-slider')?.value);
     const languages = parseNumber(document.getElementById('languages-slider')?.value);

@@ -3,14 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const parseNumber = (val) =>
     parseFloat((val || '').toString().replace(/[^\d.]/g, '')) || 0;
 
-  const debounce = (fn, delay = 150) => {
-    let timeout;
-    return (...args) => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => fn(...args), delay);
-    };
-  };
-
   // === Input-Slider Pairs Configuration ===
   const inputSliderPairs = [
     {
@@ -137,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function updateStep2Summary() {
-    const totalHours = parseNumber(hoursEl?.textContent);
+    const totalHours = parseNumber(hoursEl?.textContent || '0');
     const rate = parseNumber(document.getElementById('rate-slider')?.value);
     const efficiency = parseNumber(dataQualitySlider?.value) || 50;
 

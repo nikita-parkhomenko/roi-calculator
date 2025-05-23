@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ROI calculator</title>
     <link rel="stylesheet" href="roi.css" />
-    <script src="./roi.js"></script>
   </head>
   <body>
     <main class="roi-container">
@@ -23,11 +22,9 @@
               How many products/SKUs are you handling?
             </label>
             <input
-              type="text"
+              type="number"
               id="sku-input"
-              value="2,000"
-              inputmode="numeric"
-              pattern="\d*"
+              value="2000"
               class="input"
             />
             <input
@@ -44,11 +41,9 @@
               How many attributes do you handle per product or SKU?
             </label>
             <input
-              type="text"
+              type="number"
               id="attributes-input"
               value="10"
-              inputmode="numeric"
-              pattern="\d*"
               class="input"
             />
             <input
@@ -65,11 +60,9 @@
               Average time spent on each attribute (in seconds)
             </label>
             <input
-              type="text"
+              type="number"
               id="time-input"
               value="40"
-              inputmode="numeric"
-              pattern="\d*"
               class="input"
             />
             <input
@@ -86,11 +79,9 @@
               Number of languages in which your product data will be available
             </label>
             <input
-              type="text"
+              type="number"
               id="languages-input"
               value="2"
-              inputmode="numeric"
-              pattern="\d*"
               class="input"
             />
             <input
@@ -107,11 +98,9 @@
               Number of sales channels
             </label>
             <input
-              type="text"
+              type="number"
               id="channel-input"
               value="5"
-              inputmode="numeric"
-              pattern="\d*"
               class="input"
             />
             <input
@@ -128,11 +117,9 @@
               Internal hourly rate (for employees handling data work)
             </label>
             <input
-              type="text"
+              type="number"
               id="rate-input"
               value="40"
-              inputmode="numeric"
-              pattern="\d*"
               class="input"
             />
             <input
@@ -479,5 +466,6 @@
         </div>
       </section>
     </main>
+    <script src="./roi.js" defer></script>
   </body>
 </html>
